@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 	}
 	void Animation()
 	{
-		anim.SetBool(ISMOVING, PM.movement != 0);
+		anim.SetBool(ISMOVING, PM.Movement != 0);
 		anim.SetBool(ISAIRBORN, !PM.IsGrounded);
 		anim.SetBool(ISGLIDING, PM.isGlide);
 		anim.SetFloat(VELOCITyY, rb.linearVelocityY);

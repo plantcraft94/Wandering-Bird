@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3897a1cd237de4387d34f6f4d6f2de, type: 3}
   m_Name: LevelDataSO1
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
-  <MaxTick>k__BackingField: 4
-  <TimePerTick>k__BackingField: 2
+  <MaxTick>k__BackingField: 2
+  <TimePerTick>k__BackingField: 0.5
