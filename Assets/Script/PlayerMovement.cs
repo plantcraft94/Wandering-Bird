@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
 	InputAction MoveAction;
 	InputAction GlideAction;
+	float GlideTimer = 1f;
 	public bool isGlide{ get;private set; }
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	private void Awake()
@@ -30,6 +31,10 @@ public class PlayerMovement : MonoBehaviour
 	void Update()
 	{
 		IsGrounded = Physics2D.OverlapCapsule(GroundCheck.position, new Vector2(0.77f, 0.07f), CapsuleDirection2D.Horizontal, 0f, GroundLayer);
+		if (IsGrounded)
+        {
+			GlideTimer = 1f;
+        }
 		Input();
 		TurnCheck();
 		rb.linearVelocityX = Movement * Speed;
@@ -64,9 +69,13 @@ public class PlayerMovement : MonoBehaviour
 		}
 		if(GlideAction.IsPressed() && rb.linearVelocityY <= 0.5f)
 		{
-			isGlide = true;
-			rb.gravityScale = 0.5f;
-			rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -3.5f));
+			GlideTimer -= Time.deltaTime;
+			if(GlideTimer > 0)
+			{
+				isGlide = true;
+				rb.gravityScale = 0.5f;
+				rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -3.5f));
+			}
 		}
 	}
 	void TurnCheck()
