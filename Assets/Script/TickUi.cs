@@ -1,10 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TickUi : MonoBehaviour
 {
 	TickManager TM;
-	[SerializeField] Image TickIdicatorPrefab;
+	[SerializeField] GameObject TickIdicatorPrefab;
+	List<GameObject> Indicators = new List<GameObject>();
 	private void Awake()
 	{
 		TM = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<TickManager>();
@@ -12,25 +14,26 @@ public class TickUi : MonoBehaviour
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
 	{
+		// startui
 		for (int i = 0; i < TM.levelDataSO.MaxTick; i++)
 		{
-			Instantiate(TickIdicatorPrefab, transform);
+			Indicators.Add(Instantiate(TickIdicatorPrefab, transform));
 		}
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		int total = transform.childCount;
-		for (int i = 0; i < total; i++)
+		// updateui
+		for (int i = 0; i < Indicators.Count; i++)
 		{
 			if (i < TM.currentTick)
 			{
-				transform.GetChild(i).gameObject.SetActive(true);
+				Indicators[i].SetActive(true);
 			}
 			else
 			{
-				transform.GetChild(i).gameObject.SetActive(false);
+				Indicators[i].gameObject.SetActive(false);
 			}
 		}
 	}

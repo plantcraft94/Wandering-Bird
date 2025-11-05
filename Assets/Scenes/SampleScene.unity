@@ -1601,7 +1601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f3244abf0908c149a293bb98fe03314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TickUi
-  TickIdicatorPrefab: {fileID: 1850227534435096534, guid: 4e16f0123d080804c96b662d669587ab, type: 3}
+  TickIdicatorPrefab: {fileID: 4812297127511075178, guid: 4e16f0123d080804c96b662d669587ab, type: 3}
 --- !u!1 &1597378613
 GameObject:
   m_ObjectHideFlags: 0
