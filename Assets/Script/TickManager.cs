@@ -3,9 +3,9 @@ using UnityEngine.Events;
 
 public class TickManager : MonoBehaviour
 {
-	[SerializeField] LevelData levelDataSO;
-	int currentTick;
-	float CurrentTime;
+	public LevelData levelDataSO;
+	public int currentTick { get; private set; }
+	public float CurrentTime { get; private set; }
 	[SerializeField] UnityEvent OnFinishTick;
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	private void Awake()
