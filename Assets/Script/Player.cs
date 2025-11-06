@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.VFX;
 
 public class Player : MonoBehaviour
 {
@@ -9,12 +11,16 @@ public class Player : MonoBehaviour
 	const string ISGLIDING = "IsGliding";
 	const string VELOCITyY = "VelocityY";
 	const string ISAIRBORN = "IsAirborn";
+	[SerializeField] UnityEvent OnDeath;
+	[SerializeField] VisualEffect vfx;
+	SpriteRenderer sr;
 	
 	private void Awake()
 	{
 		anim = GetComponent<Animator>();
 		rb = GetComponent<Rigidbody2D>();
 		PM = GetComponent<PlayerMovement>();
+		sr = GetComponent<SpriteRenderer>();
 	}
 	private void Update()
 	{
@@ -26,5 +32,17 @@ public class Player : MonoBehaviour
 		anim.SetBool(ISAIRBORN, !PM.IsGrounded);
 		anim.SetBool(ISGLIDING, PM.isGlide);
 		anim.SetFloat(VELOCITyY, rb.linearVelocityY);
+	}
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if(collision.gameObject.CompareTag("Spike"))
+		{
+			OnDeath.Invoke();
+		}
+	}
+	public void Death()
+	{
+		sr.color = new Color(1.000f, 1.000f, 1.000f, 0.000f);
+		vfx.Play();
 	}
 }

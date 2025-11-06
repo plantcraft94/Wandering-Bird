@@ -8,10 +8,10 @@ public class TickManager : MonoBehaviour
 	public float CurrentTime { get; private set; }
 	[SerializeField] UnityEvent OnFinishTick;
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
-	private void Awake()
+	private void Start()
 	{
 		currentTick = levelDataSO.MaxTick;
-		CurrentTime = levelDataSO.TimePerTick;
+		CurrentTime = levelDataSO.TimePerTick + 1;
 	}
 
 	// Update is called once per frame
@@ -33,8 +33,8 @@ public class TickManager : MonoBehaviour
 			currentTick = levelDataSO.MaxTick;
 		}
 	}
-	public void test()
-	{
-		Debug.Log("Test");
-	}
+	public void DeathTimer()
+    {
+		CurrentTime += 1000f;
+    }
 }

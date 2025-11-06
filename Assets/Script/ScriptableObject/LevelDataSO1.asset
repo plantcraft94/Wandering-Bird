@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: LevelDataSO1
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
   <MaxTick>k__BackingField: 4
-  <TimePerTick>k__BackingField: 0.5
+  <TimePerTick>k__BackingField: 1

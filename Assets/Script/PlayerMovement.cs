@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
 	Rigidbody2D rb;
+	SpriteRenderer sr;
 	[SerializeField] float Speed;
 	public float Movement{ get; private set; }
 	[SerializeField] float JumpForce;
@@ -17,12 +18,13 @@ public class PlayerMovement : MonoBehaviour
 
 	InputAction MoveAction;
 	InputAction GlideAction;
-	float GlideTimer = 1f;
+	public float GlideTimer = 2f;
 	public bool isGlide{ get;private set; }
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
+		sr = GetComponent<SpriteRenderer>();
 		MoveAction = InputSystem.actions.FindAction("Move");
 		GlideAction = InputSystem.actions.FindAction("Glide");
 	}
@@ -32,9 +34,9 @@ public class PlayerMovement : MonoBehaviour
 	{
 		IsGrounded = Physics2D.OverlapCapsule(GroundCheck.position, new Vector2(0.77f, 0.07f), CapsuleDirection2D.Horizontal, 0f, GroundLayer);
 		if (IsGrounded)
-        {
-			GlideTimer = 1f;
-        }
+		{
+			GlideTimer = 2f;
+		}
 		Input();
 		TurnCheck();
 		rb.linearVelocityX = Movement * Speed;
@@ -93,14 +95,12 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (IsFacingRight)
 		{
-			Vector3 rotator = new Vector3(transform.rotation.x, 180f, transform.rotation.z);
-			transform.rotation = Quaternion.Euler(rotator);
+			sr.flipX = true;
 			IsFacingRight = !IsFacingRight;
 		}
 		else
 		{
-			Vector3 rotator = new Vector3(transform.rotation.x, 0f, transform.rotation.z);
-			transform.rotation = Quaternion.Euler(rotator);
+			sr.flipX = false;
 			IsFacingRight = !IsFacingRight;
 		}
 	}
