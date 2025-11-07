@@ -13,7 +13,7 @@ public class Nest : MonoBehaviour
         {
 			if(LM.HasFruit)
             {
-                Debug.Log("Win Level");
+				LM.LoadNextLevel();
             }
         }
 	}

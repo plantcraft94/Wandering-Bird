@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
 	}
 	public void Death()
 	{
+		rb.bodyType = RigidbodyType2D.Kinematic;
 		sr.color = new Color(1.000f, 1.000f, 1.000f, 0.000f);
 		vfx.Play();
 	}
