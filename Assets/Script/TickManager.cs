@@ -1,3 +1,4 @@
+using SmallHedge.SoundManager;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,7 +12,7 @@ public class TickManager : MonoBehaviour
 	private void Start()
 	{
 		currentTick = levelDataSO.MaxTick;
-		CurrentTime = levelDataSO.TimePerTick + 1;
+		CurrentTime = levelDataSO.TimePerTick;
 	}
 
 	// Update is called once per frame
@@ -24,6 +25,7 @@ public class TickManager : MonoBehaviour
 		CurrentTime -= Time.deltaTime;
 		if(CurrentTime <= 0)
 		{
+			SoundManager.PlaySound(SoundType.TickDown, volume: 1f);
 			currentTick--;
 			CurrentTime = levelDataSO.TimePerTick;
 		}
@@ -34,7 +36,7 @@ public class TickManager : MonoBehaviour
 		}
 	}
 	public void DeathTimer()
-    {
+	{
 		CurrentTime += 1000f;
-    }
+	}
 }

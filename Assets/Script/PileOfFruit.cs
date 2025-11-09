@@ -1,3 +1,4 @@
+using SmallHedge.SoundManager;
 using UnityEngine;
 
 public class PileOfFruit : MonoBehaviour
@@ -10,8 +11,9 @@ public class PileOfFruit : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if(collision.gameObject.CompareTag("Player"))
-        {
+		{
+			SoundManager.PlaySound(SoundType.GrabFood, volume: 1f);
 			LM.HasFruit = true;
-        }
+		}
 	}
 }

@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 	Animator anim;
 	Rigidbody2D rb;
 	PlayerMovement PM;
+	public bool isDead = false;
 	const string ISMOVING = "IsMoving";
 	const string ISGLIDING = "IsGliding";
 	const string VELOCITyY = "VelocityY";
@@ -21,6 +22,10 @@ public class Player : MonoBehaviour
 		rb = GetComponent<Rigidbody2D>();
 		PM = GetComponent<PlayerMovement>();
 		sr = GetComponent<SpriteRenderer>();
+	}
+	private void Start()
+	{
+		isDead = false;
 	}
 	private void Update()
 	{
@@ -38,6 +43,7 @@ public class Player : MonoBehaviour
 		if(collision.gameObject.CompareTag("Spike"))
 		{
 			OnDeath.Invoke();
+			isDead = true;
 		}
 	}
 	public void Death()

@@ -1,3 +1,4 @@
+using SmallHedge.SoundManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
 	InputAction MoveAction;
 	InputAction GlideAction;
-	public float GlideTimer = 2f;
+	public float GlideTimer = 1.5f;
 	public bool isGlide{ get;private set; }
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	private void Awake()
@@ -35,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 		IsGrounded = Physics2D.OverlapCapsule(GroundCheck.position, new Vector2(0.77f, 0.07f), CapsuleDirection2D.Horizontal, 0f, GroundLayer);
 		if (IsGrounded)
 		{
-			GlideTimer = 2f;
+			GlideTimer = 1.5f;
 		}
 		Input();
 		TurnCheck();
@@ -51,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
 	}
 	public void Jump()
 	{
+		SoundManager.PlaySound(SoundType.Fly,volume: 1);
 		rb.gravityScale = gravityScale;
 		rb.linearVelocityY = JumpForce;
 	}
