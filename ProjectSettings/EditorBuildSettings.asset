@@ -23,6 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level5.unity
     guid: b64605e14da6f364096972a5284516d0
+  - enabled: 1
+    path: Assets/Scenes/YouWin.unity
+    guid: 9216dbc320d8da74598990f9370e9296
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
