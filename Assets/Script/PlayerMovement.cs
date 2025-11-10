@@ -58,9 +58,11 @@ public class PlayerMovement : MonoBehaviour
 	}
 	private void JumpCurve()
 	{
+		// Không glide
 		isGlide = false;
 		if (rb.linearVelocityY >= 0.5f)
 		{
+			//nếu không có cái if này thì game bug, dont judge me :(
 		}
 		else if (rb.linearVelocityY <= 0.5f)
 		{
@@ -71,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
 		{
 			rb.gravityScale = gravityScale;
 		}
+		// Glide
 		if(GlideAction.IsPressed() && rb.linearVelocityY <= 0.5f)
 		{
 			GlideTimer -= Time.deltaTime;
